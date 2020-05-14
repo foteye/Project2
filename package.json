@@ -1,0 +1,34 @@
+{
+  "name": "project2",
+  "version": "1.0.0",
+  "description": "my idea is to make an expense tracking system for a business, so will include a database for users (logins, basic info, managers) and a database for all reciepts.\r My mystery library is going to be SheetJS, which is a reader/writer for xlsx/csv files. At this company, all people managers are responsible for their direct reports expenses, so if you have direct reports an export button will be available for you to download their expenses from your browser, as a csv.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/foteye/Project2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/foteye/Project2/issues"
+  },
+  "homepage": "https://github.com/foteye/Project2#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "fs": "0.0.1-security",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.1.0",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "path": "^0.12.7",
+    "sequelize": "^5.21.8",
+    "sheetjs": "^2.0.0",
+    "uuid": "^8.0.0"
+  }
+}
