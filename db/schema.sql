@@ -2,7 +2,7 @@ DROP DATABASE IF EXISTS expenseTracker_db;
 CREATE DATABASE expenseTracker_db;
 USE expenseTracker_db;
 
-CREATE TABLE users (
+CREATE TABLE user (
     id VARCHAR(50) PRIMARY KEY,
     email VARCHAR(100) NOT NULL,
     password VARCHAR(100) NOT NULL,
@@ -11,7 +11,7 @@ CREATE TABLE users (
     manager VARCHAR(50)
 );
 
-CREATE TABLE receipts (
+CREATE TABLE receipt (
     id VARCHAR(50) PRIMARY KEY,
     user VARCHAR(50) NOT NULL,
     transaction_date DATE NOT NULL,
