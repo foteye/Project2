@@ -2,7 +2,7 @@
     "development": {
       "username": "root",
       "password": "FogusMogus",
-      "database": "passport_demo",
+      "database": "expensetracker_db",
       "host": "localhost",
       "dialect": "mysql"
     },

@@ -1,18 +1,23 @@
-module.exports = function (sequelize, DataTypes) {
+module.exports = function(sequelize, DataTypes) {
   var Receipt = sequelize.define("Receipt", {
+    id: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      primaryKey: true
+    },
     user: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    transaction_date: {
+    transactionDate: {
       type: DataTypes.DATE,
       allowNull: false
     },
-    transaction_type: {
+    transactionType: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    transaction_number: {
+    transactionNumber: {
       type: DataTypes.STRING,
       allowNull: false
     },
@@ -38,7 +43,18 @@ module.exports = function (sequelize, DataTypes) {
     justification: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      defaultValue: sequelize.literal('UTC_TIMESTAMP()')
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      defaultValue: sequelize.literal('UTC_TIMESTAMP()')
     }
+  }, {
+    freezeTableName: true,
+    timestamps: true
   });
 
   return Receipt;
