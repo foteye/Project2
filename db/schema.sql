@@ -20,7 +20,6 @@ CREATE TABLE Receipt (
     amount DECIMAL(19,2) NOT NULL,
     tax DECIMAL(19,2) NOT NULL,
     vendor VARCHAR(50) NOT NULL,
-    category VARCHAR(30) NOT NULL,
     description VARCHAR(500) NOT NULL,
     justification VARCHAR(500) NOT NULL
 );

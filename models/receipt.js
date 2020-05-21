@@ -33,10 +33,6 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
-    category: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
     description: {
       type: DataTypes.STRING
     },
@@ -46,11 +42,11 @@ module.exports = function(sequelize, DataTypes) {
     },
     createdAt: {
       type: DataTypes.DATE,
-      defaultValue: sequelize.literal('UTC_TIMESTAMP()')
+      defaultValue: sequelize.literal('NOW()')
     },
     updatedAt: {
       type: DataTypes.DATE,
-      defaultValue: sequelize.literal('UTC_TIMESTAMP()')
+      defaultValue: sequelize.literal('NOW()')
     }
   }, {
     freezeTableName: true,
