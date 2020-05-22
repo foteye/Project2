@@ -28,7 +28,7 @@ module.exports = function(app) {
       res.json({});
     }
 
-    const query = `SELECT r.* FROM User u LEFT JOIN user u2 ON u2.manager = u.id INNER JOIN Receipt r ON r.user = u.id OR r.user = u2.id WHERE u.id = '${req.user.id}' ORDER BY r.transactionDate DESC`;
+    const query = `SELECT r.* FROM user u LEFT JOIN user u2 ON u2.manager = u.id INNER JOIN receipt r ON r.user = u.id OR r.user = u2.id WHERE u.id = '${req.user.id}' ORDER BY r.transactionDate DESC`;
 
     try{
       const receipts = await db.sequelize.query(query, 
