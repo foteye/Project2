@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  var Receipt = sequelize.define("receipt", {
+  var Receipt = sequelize.define("Receipt", {
     id: {
       type: DataTypes.STRING,
       allowNull: false,
