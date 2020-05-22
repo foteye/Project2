@@ -9,13 +9,8 @@ $(document).ready(function() {
   });
 
   $("#btnExport").click(function() {
-    var content = "What's up , hello world";
-    var filename = "hello.txt";
-    var blob = new Blob([content], {
-      type: "text/plain;charset=utf-8"
-    });
-
-    saveAs(blob, filename);
+    var content = XLSX.utils.sheet_to_csv(XLSX.utils.table_to_sheet(document.getElementById('receiptTable'), { sheet: "ReceiptExport" }));   
+    saveAs(new Blob([content], { type: "text/plain;charset=utf-8" }), 'export.csv');
   });
 
   $("#btnLogout").click(function() {
@@ -26,10 +21,37 @@ $(document).ready(function() {
 
 });
 
-async function onLoad() {
-  var user = {};
-  await $.get("/api/currentUser", function(data) {
-    user = data;
+function onLoad() {
+  $.get("/api/currentUser", function(data) {
+    $('#welcomeSpan').text(`Welcome ${data.firstName} ${data.lastName}`);
   });
-  $('#welcomeSpan').text(`Welcome ${user.firstName} ${user.lastName}`);
+
+  $.get('/api/getReceipts', function(data) {
+    renderTable(data);
+  });
+}
+
+async function renderTable(receipts) {
+  const receiptTable = $("#receiptTable tbody");
+  receiptTable.children().not(":first").remove();
+
+  for (let receipt of receipts) {
+    let user = await $.get("/api/getFirstLastName/" + receipt.user)
+
+    const row = $("<tr></tr>");
+    const date = new Date(Date.parse(receipt.transactionDate));
+
+    const rowCells = $(`
+      <td>${date.toDateString()}</td>
+      <td>${receipt.transactionNumber}</td>
+      <td>${receipt.transactionType}</td>
+      <td>${receipt.amount}</td>
+      <td>${receipt.tax}</td>
+      <td>${receipt.description}</td>
+      <td>${receipt.justification}</td>
+      <td>${user.firstName} ${user.lastName}</td>
+    `);
+
+    receiptTable.append(row.append(rowCells));
+  }
 }

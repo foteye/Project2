@@ -19,16 +19,15 @@ $(document).ready(function() {
     passwordInput.val("");
   });
 
-  function loginUser(email, password) {
-    $.post("/api/login", {
+  async function loginUser(email, password) {
+    try {
+      await $.post("/api/login", {
         email: email,
         password: password
-      })
-      .then(function() {
-        window.location.replace("/receipt");
-      })
-      .catch(function(err) {
-        console.log(err);
       });
+      window.location.replace("/receipt");
+    } catch {
+      $("#invalidPW").show();
+    }
   }
 });

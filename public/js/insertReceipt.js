@@ -20,31 +20,28 @@ $(document).ready(function() {
   $("#btnSubmit").click(function() {
     event.preventDefault();
     const formData = $(this).closest('form').serializeArray().reduce(function(obj, item) {
-        obj[item.name] = item.value;
-        return obj;
+      obj[item.name] = item.value;
+      return obj;
     }, {});
-    
+
     $.post("/api/insertReceipt", {
-       formData
-    }).then(function(){
-        console.log('here');
-        $.get("/receipt").then(function(){
-            window.location.replace('/receipt');
-        });
-    }).catch(function(err){
-        showErrMsg(err);
+      formData
+    }).then(function() {
+      $.get("/receipt").then(function() {
+        window.location.replace('/receipt');
+      });
+    }).catch(function(err) {
+      showErrMsg(err);
     });
   });
 });
 
-function showErrMsg(err){
-    console.log(err);
+function showErrMsg(err) {
+  console.log(err);
 }
 
-async function onLoad() {
-    var user = {};
-    await $.get("/api/currentUser", function(data) {
-      user = data;
-    });
-    $('#welcomeSpan').text(`Welcome ${user.firstName} ${user.lastName}`);
+function onLoad() {
+  $.get("/api/currentUser", function(data) {
+    $('#welcomeSpan').text(`Welcome ${data.firstName} ${data.lastName}`);
+  });
 }
